@@ -1,0 +1,169 @@
+<h1  style="style=Courier New" class= "text-black" bgcolor="RED">_Bloco de Tarefas_</h1>
+ 
+<br>
+<br>
+<br>
+
+ <!-- Campo de input -->
+<div class="my-1">
+ Adicionar Tarefa:<input class="form-control" #todoText />
+ <br>
+ Adicionar Data:<input class="form-control" #todoPrazo type="date"/>
+<br>
+ </div>
+
+
+
+  <!-- Campo de botões -->
+
+<tr>
+  
+  <td  WIDTH=50%>
+ <button  class="btn btn-primary mt-1 " (click)="addItemMaximo(todoText.value,todoPrazo.value)">
+   Prioridade Máxima
+ </button>
+</td>
+
+
+<td  WIDTH=40%>
+<button  class="btn btn-primary mt-1" (click)="addItemMedio(todoText.value,todoPrazo.value)">
+   Prioridade Média
+ </button>
+</td>
+
+
+ <td  WIDTH=0%>
+ <button class="btn btn-primary mt-1" (click)="addItemMinimo(todoText.value,todoPrazo.value)">
+   Prioridade Mínima
+ </button>
+ </td>
+
+</tr>
+
+<br>
+<br> 
+<br>
+<br> 
+<br>
+
+
+<!-- Bloco de tarefas não realizadas máximas-->
+ 
+<h3 class="bg-primary p-1 text-white">Tarefas não concluidas</h3>
+
+
+<table class="table table-striped table-bordered">
+
+ <thead>
+   <tr  class=" text-black" bgcolor="RED"><th></th><th>Tarefas de Prioridade Máxima</th><th></th><th></th><th></th></tr>
+  <tr><th></th><th>Descrição</th><th>Done</th><th>Data Final Pra Realização</th><th>Realização</th></tr>
+ </thead>
+ 
+ <tbody>
+   <tr *ngFor="let item of getTodoItensMaximos();let i =index">
+     <td>{{i+1}}</td>
+     <td>{{item.action}}</td>
+     <td><input type="checkbox" [(ngModel)]="item.done"/></td>
+
+     <td>{{item.data}}</td>
+
+     <td [ngSwitch]="item.done">
+        <span *ngSwitchCase="true">Yes</span>
+        <span *ngSwitchDefault>No</span>
+        </td>
+        </tr>
+ </tbody>
+</table>
+
+<br>
+<br>
+
+<!-- Bloco de tarefas não realizadas médias-->
+<table class="table table-striped table-bordered">
+ <thead>
+    <tr  class=" text-black"  bgcolor="YELLOW"><th></th><th>Tarefas de Prioridade Média</th><th></th><th></th><th></th></tr>
+   <tr><th></th><th>Descrição</th><th>Done</th><th>Data Final Pra Realização</th><th>Realização</th></tr>
+ </thead>
+ <tbody>
+   <tr *ngFor="let item of getTodoItensMedios();let i =index">
+     <td>{{i+1}}</td>
+     <td>{{item.action}}</td>
+     <td><input type="checkbox" [(ngModel)]="item.done"/></td>
+     <td>{{item.data}}  </td>
+     <td [ngSwitch]="item.done">
+        <span *ngSwitchCase="true">Yes</span>
+        <span *ngSwitchDefault>No</span>
+        </td>
+        </tr>
+ </tbody>
+</table>
+
+<br>
+<br>
+
+<!-- Bloco de tarefas não realizadas minimas-->
+<table class="table table-striped table-bordered" >
+ <thead>
+     <tr  class=" text-black" bgcolor="GREEN"><th></th><th>Tarefas de Prioridade Mínima</th><th></th><th></th><th></th></tr>
+  <tr><th></th><th>Descrição</th><th>Done</th><th>Data Final Pra Realização</th><th>Realização</th></tr>
+ </thead>
+ <tbody>
+   <tr *ngFor="let item of getTodoItensMinimos();let i =index">
+   <td>{{i+1}}</td>
+  <td>{{item.action}}</td>
+     <td><input type="checkbox" [(ngModel)]="item.done"/></td>
+       <td>{{item.data}}
+   </td>
+     <td [ngSwitch]="item.done">
+        <span *ngSwitchCase="true">Yes</span>
+        <span *ngSwitchDefault>No</span>
+        </td>
+        </tr>
+ </tbody>
+</table>
+
+
+
+
+<!-- Bloco de tarefas Realizadas -->
+<h3 class="bg-primary p-1 text-white">Tarefas concluidas</h3>
+<table class="table table-striped table-bordered" >
+ <thead>
+    <tr><th></th><th>Descrição</th><th>Done</th><th>Realização</th></tr>
+ </thead>
+ <tbody>
+   <tr *ngFor="let item of getTodoItensFeitosMaximo();let i =index">
+     <td>{{i+1}}</td>
+     <td>{{item.action}}</td>
+     <td><input type="checkbox" [(ngModel)]="item.done"/></td>
+     <td [ngSwitch]="item.done">
+        <span *ngSwitchCase="true">Yes</span>
+        <span *ngSwitchDefault>No</span>
+        </td>
+        </tr>
+
+
+         <tr *ngFor="let item of getTodoItensFeitosMedio();let i =index">
+     <td>{{i+1}}</td>
+     <td>{{item.action}}</td>
+     <td><input type="checkbox" [(ngModel)]="item.done"/></td>
+     <td [ngSwitch]="item.done">
+        <span *ngSwitchCase="true">Yes</span>
+        <span *ngSwitchDefault>No</span>
+        </td>
+        </tr>
+
+         <tr *ngFor="let item of getTodoItensFeitosMinimo();let i =index">
+     <td>{{i+1}}</td>
+     <td>{{item.action}}</td>
+     <td><input type="checkbox" [(ngModel)]="item.done"/></td>
+     <td [ngSwitch]="item.done">
+        <span *ngSwitchCase="true">Yes</span>
+        <span *ngSwitchDefault>No</span>
+        </td>
+        </tr>
+ 
+</tbody>
+</table>
+ 
+ 
